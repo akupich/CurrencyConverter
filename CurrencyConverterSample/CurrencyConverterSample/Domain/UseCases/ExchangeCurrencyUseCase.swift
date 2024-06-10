@@ -8,7 +8,7 @@
 import Combine
 
 protocol ExchangeCurrencyUseCaseble {
-    func execute(with request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, NetworkError>
+    func execute(with request: ConversionRateRequest?) -> AnyPublisher<ExchangeAmount?, Error>
 }
 
 final class ExchangeCurrencyUseCase: ExchangeCurrencyUseCaseble {
@@ -19,7 +19,12 @@ final class ExchangeCurrencyUseCase: ExchangeCurrencyUseCaseble {
         self.repository = repository
     }
 
-    func execute(with request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, NetworkError> {
-        repository.getConversionRate(request)
+    func execute(with request: ConversionRateRequest?) -> AnyPublisher<ExchangeAmount?, Error> {
+        if let request {
+            return repository.getConversionRate(request)
+        } else {
+            return Fail(error: DomainError.invalidArgument)
+                .eraseToAnyPublisher()
+        }
     }
 }

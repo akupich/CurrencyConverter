@@ -14,7 +14,7 @@ final class ExchangeRepositoryImpl: ExchangeRepository {
         self.networkService = networkService
     }
     
-    func getConversionRate(_ request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, NetworkError> {
+    func getConversionRate(_ request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, Error> {
         return networkService.request(ExchangeEndpoint.exchange(from: request.sourceCurrency,
                                                                 to: request.targetCurrency,
                                                                 amount: request.amount))

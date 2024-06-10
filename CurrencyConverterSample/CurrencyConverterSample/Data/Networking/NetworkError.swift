@@ -20,8 +20,8 @@ extension NetworkError: LocalizedError {
             return "Response data is incorrect"
         case .noConnection:
             return "Internet connection problem"
-        case .other(let error):
-            return "Unknown error: \(error.localizedDescription)"
+        case .other:
+            return "Unknown error occured. Please try again..."
         }
     }
 }

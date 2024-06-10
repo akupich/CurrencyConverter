@@ -35,12 +35,12 @@ final class ExchangeCurrencyViewModelImpl: ExchangeCurrencyViewModel {
     let availableCurrencies: [Currency]
     var state: PassthroughSubject<State, Never> = .init()
     
-    private let availableCurrenciesUseCase: AvailableCurrenciesUseCaseble
     private let exchangeCurrencyUseCase: ExchangeCurrencyUseCaseble
+    private let availableCurrenciesUseCase: AvailableCurrenciesUseCaseble
     
-    private var cancellables: Set<AnyCancellable> = Set()
     private var timerCancellable: AnyCancellable?
-    private var exchangeRequestCancellable: AnyCancellable?
+    private var exchangeCancellable: AnyCancellable?
+    private var cancellables: Set<AnyCancellable> = Set()
     
     init(exchangeCurrencyUseCase: ExchangeCurrencyUseCaseble, availableCurrenciesUseCase: AvailableCurrenciesUseCaseble) {
         self.availableCurrenciesUseCase = availableCurrenciesUseCase
@@ -55,8 +55,8 @@ final class ExchangeCurrencyViewModelImpl: ExchangeCurrencyViewModel {
     
     private func bindInputs() {
         $amount
-            .compactMap { Double($0) }
             .combineLatest($sourceCurrency, $targetCurrency)
+            .dropFirst()
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.fetchExchangeRate()
@@ -64,10 +64,10 @@ final class ExchangeCurrencyViewModelImpl: ExchangeCurrencyViewModel {
             }.store(in: &cancellables)
     }
     
-    func startTimer() {
+    private func startTimer() {
         timerCancellable?.cancel()
         timerCancellable = Timer
-            .publish(every: Double(10), tolerance: 0.1, on: .main, in: .common)
+            .publish(every: Double(10), on: .main, in: .common)
             .autoconnect()
             .sink(receiveValue: { [weak self] _ in
                 self?.fetchExchangeRate()
@@ -75,16 +75,12 @@ final class ExchangeCurrencyViewModelImpl: ExchangeCurrencyViewModel {
     }
     
     private func fetchExchangeRate() {
-        guard let amount = Double(amount),
-              let sourceCurrency = sourceCurrency?.rawValue,
-              let targetCurrency = targetCurrency?.rawValue else { return }
-        
         state.send(.isLoading)
         
-        let request = ConversionRateRequest(amount: amount,
+        let request = ConversionRateRequest(amountStr: amount,
                                             sourceCurrency: sourceCurrency,
                                             targetCurrency: targetCurrency)
-        exchangeRequestCancellable = exchangeCurrencyUseCase
+        exchangeCancellable = exchangeCurrencyUseCase
             .execute(with: request)
             .compactMap { $0?.amount }
             .receive(on: DispatchQueue.main)

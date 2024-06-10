@@ -26,6 +26,7 @@
 		322CD1E32C167A830000B27C /* AvailableCurrenciesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E22C167A830000B27C /* AvailableCurrenciesUseCase.swift */; };
 		322CD1E52C167B3D0000B27C /* GetAllCurrenciesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E42C167B3D0000B27C /* GetAllCurrenciesRepository.swift */; };
 		322CD1E72C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E62C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift */; };
+		322CD1E92C17234E0000B27C /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E82C17234E0000B27C /* DomainError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		322CD1E22C167A830000B27C /* AvailableCurrenciesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCurrenciesUseCase.swift; sourceTree = "<group>"; };
 		322CD1E42C167B3D0000B27C /* GetAllCurrenciesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCurrenciesRepository.swift; sourceTree = "<group>"; };
 		322CD1E62C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCurrenciesRepositoryImpl.swift; sourceTree = "<group>"; };
+		322CD1E82C17234E0000B27C /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 		3226D2162C0CA535006987E1 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				322CD1E82C17234E0000B27C /* DomainError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				3226D23E2C0D18D2006987E1 /* ExchangeCurrencyUseCase.swift in Sources */,
 				3226D2392C0D03CD006987E1 /* ExchangeRepository.swift in Sources */,
 				322CD1E52C167B3D0000B27C /* GetAllCurrenciesRepository.swift in Sources */,
+				322CD1E92C17234E0000B27C /* DomainError.swift in Sources */,
 				3226D2072C0C9C56006987E1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

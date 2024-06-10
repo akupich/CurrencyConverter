@@ -14,5 +14,5 @@ protocol ExchangeRepository {
     ///                      sourceCurrency - given currency have to be converted,
     ///                      targetCurrency - target currency required for conversion
     /// - Returns: publisher with exchanged amount based on required currency or api error
-    func getConversionRate(_ request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, NetworkError>
+    func getConversionRate(_ request: ConversionRateRequest) -> AnyPublisher<ExchangeAmount?, Error>
 }
