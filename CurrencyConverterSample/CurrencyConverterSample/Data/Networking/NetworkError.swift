@@ -8,9 +8,22 @@
 import Foundation
 
 enum NetworkError: Error {
-    case sessionFailed(error: URLError)
     case decodingFailed
+    case noConnection
     case other(Error)
+}
+
+extension NetworkError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .decodingFailed:
+            return "Response data is incorrect"
+        case .noConnection:
+            return "Internet connection problem"
+        case .other(let error):
+            return "Unknown error: \(error.localizedDescription)"
+        }
+    }
 }
 
 extension NetworkError {
@@ -18,8 +31,8 @@ extension NetworkError {
         switch error {
         case is Swift.DecodingError:
           self = .decodingFailed
-        case let urlError as URLError:
-          self = .sessionFailed(error: urlError)
+        case let urlError as URLError where urlError.errorCode == -1009:
+            self = .noConnection
         default:
           self = .other(error)
         }

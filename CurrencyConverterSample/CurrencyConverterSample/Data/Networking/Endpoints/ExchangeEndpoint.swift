@@ -8,10 +8,10 @@
 import Foundation
 
 enum ExchangeEndpoint: Endpoint {
-    case exchange(from: String, to: String, amount: Int)
+    case exchange(from: String, to: String, amount: Double)
     
     var baseURL: URL {
-        return URL(string: "https://api.evp.lt/currency/commercial")!
+        return URL(string: "http://api.evp.lt/currency/commercial")!
     }
     
     var path: String {

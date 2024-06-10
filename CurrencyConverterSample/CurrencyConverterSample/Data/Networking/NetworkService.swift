@@ -8,14 +8,16 @@
 import Foundation
 import Combine
 
-final class NetworkService<EndpointType: Endpoint>: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     
-    func request<T: Decodable>(_ endpoint: EndpointType) -> AnyPublisher<T, NetworkError> {
+    func request<T: Decodable>(_ endpoint: some Endpoint) -> AnyPublisher<T, NetworkError> {
         let url = endpoint.baseURL.appendingPathComponent(endpoint.path)
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         
         endpoint.headers?.forEach { request.addValue($0.value, forHTTPHeaderField: $0.key) }
+        
+        debugPrint("Request: \(request.url?.absoluteString ?? "")")
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .map(\.data)

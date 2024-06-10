@@ -8,6 +8,5 @@
 import Combine
 
 protocol NetworkServiceProtocol {
-    associatedtype EndpointType: Endpoint
-    func request<T: Decodable>(_ endpoint: EndpointType) -> AnyPublisher<T, NetworkError>
+    func request<T: Decodable>(_ endpoint: some Endpoint) -> AnyPublisher<T, NetworkError>
 }
