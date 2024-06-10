@@ -27,6 +27,7 @@
 		322CD1E52C167B3D0000B27C /* GetAllCurrenciesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E42C167B3D0000B27C /* GetAllCurrenciesRepository.swift */; };
 		322CD1E72C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E62C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift */; };
 		322CD1E92C17234E0000B27C /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1E82C17234E0000B27C /* DomainError.swift */; };
+		322CD1EC2C17332E0000B27C /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322CD1EB2C17332E0000B27C /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		322CD1E42C167B3D0000B27C /* GetAllCurrenciesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCurrenciesRepository.swift; sourceTree = "<group>"; };
 		322CD1E62C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCurrenciesRepositoryImpl.swift; sourceTree = "<group>"; };
 		322CD1E82C17234E0000B27C /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
+		322CD1EB2C17332E0000B27C /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		3226D2102C0CA389006987E1 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				322CD1EA2C17331B0000B27C /* Entities */,
 				3226D2182C0CA5D9006987E1 /* Repository */,
 				3226D2192C0CA5E1006987E1 /* Networking */,
 			);
@@ -229,6 +232,14 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
+		322CD1EA2C17331B0000B27C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				322CD1EB2C17332E0000B27C /* Currency.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,6 +320,7 @@
 				3226D21F2C0CB7F0006987E1 /* NetworkError.swift in Sources */,
 				3226D2312C0CBA93006987E1 /* ExchangeEndpoint.swift in Sources */,
 				3226D2212C0CB7F0006987E1 /* NetworkServiceProtocol.swift in Sources */,
+				322CD1EC2C17332E0000B27C /* Currency.swift in Sources */,
 				322CD1E72C167BA90000B27C /* GetAllCurrenciesRepositoryImpl.swift in Sources */,
 				3226D20C2C0CA039006987E1 /* CurrencyConverterViewController.swift in Sources */,
 				322CD1E32C167A830000B27C /* AvailableCurrenciesUseCase.swift in Sources */,

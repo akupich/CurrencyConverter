@@ -7,16 +7,7 @@
 
 import Foundation
 
-enum Currency: String, CaseIterable {
-    case USD
-    case EUR
-    case GBP
-    case JPY
-}
-
 final class GetAllCurrenciesRepositoryImpl: GetAllCurrenciesRepository {
-    
-    init() {}
     
     func getAllCurrencies() -> [Currency] {
         Currency.allCases

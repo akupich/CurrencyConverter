@@ -87,10 +87,11 @@ final class ExchangeCurrencyViewModelImpl: ExchangeCurrencyViewModel {
             .catch { [weak self] error in
                 self?.timerCancellable?.cancel()
                 self?.state.send(.failed(error))
-                return Just("ERROR")
+                return Just("")
             }
             .sink(receiveValue: { [weak self] in
-                self?.state.send(.loaded($0))
+                let symbol = self?.targetCurrency?.symbol ?? ""
+                self?.state.send(.loaded($0+symbol))
             })
     }
 }
